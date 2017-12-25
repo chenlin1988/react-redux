@@ -1,0 +1,108 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _reactRouter = require('react-router');
+
+var _test = require('../../component/test');
+
+var _test2 = _interopRequireDefault(_test);
+
+var _app_action = require('../../action/app_action');
+
+var _app_action2 = _interopRequireDefault(_app_action);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by lin.chen on 2017/7/11.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+// 所需的各种插件
+
+
+// 所需的所有组件
+// 引入第4步创建的组件
+
+
+// 本页面所需action
+
+
+// 稍后创建
+
+// 最终要交给redux管理的所有变量
+var mapStoreStateToProps = function mapStoreStateToProps(state) {
+    return {
+        dispatch: state.dispatch,
+        testValue: state.app.inputValue
+    };
+};
+
+// 最终要交给redux管理的所有action
+// 即定义哪些方法将成为action
+var mapDispatches = function mapDispatches(dispatch) {
+    return {
+        fn: {
+            onTestAdd: function onTestAdd(v) {
+                dispatch(_app_action2.default.onTestAdd(v));
+            },
+            onTestSubtract: function onTestSubtract(v) {
+                dispatch(_app_action2.default.onTestSubtract(v));
+            }
+        }
+    };
+};
+
+// 创建组件
+
+var HomePageContainer = function (_React$Component) {
+    _inherits(HomePageContainer, _React$Component);
+
+    function HomePageContainer(props) {
+        _classCallCheck(this, HomePageContainer);
+
+        var _this = _possibleConstructorReturn(this, (HomePageContainer.__proto__ || Object.getPrototypeOf(HomePageContainer)).call(this, props));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(HomePageContainer, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_test2.default, { value: this.props.testValue, onAdd: this.props.fn.onTestAdd, onSubtract: this.props.fn.onTestSubtract })
+            );
+        }
+    }]);
+
+    return HomePageContainer;
+}(_react2.default.Component);
+
+// ==================
+// PropTypes
+// ==================
+
+HomePageContainer.propTypes = {
+    dispatch: _react.PropTypes.func,
+    fn: _react.PropTypes.object,
+    testValue: _react.PropTypes.number,
+    location: _react.PropTypes.any // location对象包含了浏览器url中的各种信息，会自动被引入到当前组件中，如果不需要的话可以去掉
+};
+
+exports.default = (0, _reactRedux.connect)(mapStoreStateToProps, mapDispatches)(HomePageContainer);

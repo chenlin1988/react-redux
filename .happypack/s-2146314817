@@ -1,0 +1,46 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _root = require('../component/root');
+
+var _root2 = _interopRequireDefault(_root);
+
+var _home = require('../container/home');
+
+var _home2 = _interopRequireDefault(_home);
+
+var _geolocation = require('../container/geolocation');
+
+var _geolocation2 = _interopRequireDefault(_geolocation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// react核心
+exports.default = _react2.default.createElement(
+    _reactRouter.Route,
+    { path: '/', component: _root2.default },
+    ' // \u6240\u6709\u7684\u8BBF\u95EE\uFF0C\u90FD\u8DF3\u8F6C\u5230rootContainer',
+    _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/home' }),
+    ' // \u9ED8\u8BA4\u52A0\u8F7D\u7684\u7EC4\u4EF6\uFF0C\u6BD4\u5982\u8BBF\u95EEwww.test.com,\u4F1A\u81EA\u52A8\u8DF3\u8F6C\u5230www.test.com/home',
+    _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _home2.default }),
+    ' // \u4E00\u4E2A\u8DEF\u7531\u5730\u5740\uFF0C\u8BBF\u95EEwww.test.com/home,\u5C31\u4F1A\u8DF3\u8F6C\u5230\u6B64',
+    _react2.default.createElement(_reactRouter.Route, { path: '/getLocation', component: _geolocation2.default }),
+    _react2.default.createElement(_reactRouter.Redirect, { from: '*', to: '/' }),
+    ' // \u6240\u6709\u7684\u5176\u4ED6\u672A\u5B9A\u4E49\u7684\u8BBF\u95EE\u8DEF\u5F84\uFF0C\u90FD\u8DF3\u8F6C\u5230\u6839\u8DEF\u5F84\uFF0C\u6BD4\u5982\u8BBF\u95EEwww.test.com/abc, \u4F46\u662F/abc\u6211\u4EEC\u6CA1\u6709\u5B9A\u4E49\uFF0C\u5C31\u4F1A\u81EA\u52A8\u8DF3\u8F6C\u5230www.test.com, \u800Cwww.test.com\u53C8\u4F1A\u81EA\u52A8\u8DF3\u8F6C\u5230www.test.com/home'
+); // 一个主页的container
+// 创建route所需
+
+/* 下面是引入一些我们自己定义的container,作为路由的页面 */
+// root这个container很重要 我们稍后配置
+/**
+ * Created by lin.chen on 2017/7/11.
+ */

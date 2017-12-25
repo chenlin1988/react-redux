@@ -1,0 +1,42 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by lin.chen on 2017/7/11.
+ */
+var AdviserActions = function () {
+    function AdviserActions() {
+        _classCallCheck(this, AdviserActions);
+    }
+
+    _createClass(AdviserActions, null, [{
+        key: 'onTestAdd',
+
+        // 用户点击按钮时，将触发此方法
+        value: function onTestAdd(num) {
+            return { // 这个return,实际上是触发了action,redux会自动去触发reducer中对应的方法
+                type: 'TEST::add', // 与reducer中的type对应
+                payload: num + 1
+            };
+        }
+    }, {
+        key: 'onTestSubtract',
+        value: function onTestSubtract(num) {
+            return {
+                type: 'TEST::subtract',
+                payload: num - 1
+            };
+        }
+    }]);
+
+    return AdviserActions;
+}();
+
+exports.default = AdviserActions;
